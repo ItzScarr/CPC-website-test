@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Acme Corporation</title>
+  <title>Acme Corporation CPC Solutions</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -78,6 +78,14 @@
     button:hover {
       background-color: #34495e;
     }
+    .domain-link {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+    .domain-link a {
+      color: #ecf0f1;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -96,6 +104,9 @@
     <header>
       <h1>Acme Corporation</h1>
       <p>Professional Solutions for Modern Business</p>
+      <div class="domain-link">
+        Visit us at: <a href="https://acmecorp-cpc.com" target="_blank" rel="noopener">acmecorp‑cpc.com</a>
+      </div>
     </header>
 
     <section>
@@ -124,7 +135,7 @@
         <h2>Contact</h2>
         <button onclick="toggleContent('contact')">Read More</button>
         <div id="contact" class="content">
-          <p>Email: info@acmecorp.com<br />Phone: (123) 456-7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
+          <p>Email: info@acmecorp.com<br />Phone: (123) 456‑7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
         </div>
       </div>
     </section>
@@ -133,7 +144,7 @@
   <script>
     function toggleContent(id) {
       const content = document.getElementById(id);
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
     }
   </script>
 </body>
