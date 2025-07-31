@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formal Company Website</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Acme Corporation</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +13,7 @@
       background-color: #f9f9f9;
       color: #333;
       display: flex;
+      flex-direction: row;
     }
     header {
       background-color: #2c3e50;
@@ -26,6 +28,7 @@
       padding: 20px;
       height: 100vh;
       box-sizing: border-box;
+      position: fixed;
     }
     .sidebar h3 {
       margin-top: 0;
@@ -45,8 +48,9 @@
       text-decoration: underline;
     }
     .main-content {
-      flex: 1;
+      margin-left: 250px;
       padding: 20px;
+      width: calc(100% - 250px);
     }
     h2 {
       border-bottom: 2px solid #ccc;
@@ -90,8 +94,8 @@
 
   <div class="main-content">
     <header>
-      <h1>CPC WEBSITE</h1>
-      <p>Best place to make your important deals!</p>
+      <h1>Acme Corporation</h1>
+      <p>Professional Solutions for Modern Business</p>
     </header>
 
     <section>
@@ -99,7 +103,7 @@
         <h2>About Us</h2>
         <button onclick="toggleContent('about')">Read More</button>
         <div id="about" class="content">
-          <p>Acme Corporation has been delivering high-quality services to clients worldwide since 2022. We are committed to professionalism, innovation, and excellence in every project we undertake.</p>
+          <p>Acme Corporation has been delivering high-quality services to clients worldwide since 2005. We are committed to professionalism, innovation, and excellence in every project we undertake.</p>
         </div>
       </div>
 
@@ -120,7 +124,7 @@
         <h2>Contact</h2>
         <button onclick="toggleContent('contact')">Read More</button>
         <div id="contact" class="content">
-          <p>Email: George.rusiecki@btinternet.com<br />Phone: (123) 456-7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
+          <p>Email: info@acmecorp.com<br />Phone: (123) 456-7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
         </div>
       </div>
     </section>
