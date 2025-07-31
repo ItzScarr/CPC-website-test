@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formal Company Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #34495e;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .expandable {
+      margin-bottom: 20px;
+    }
+    .content {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h3>Company Divisions</h3>
+    <ul>
+      <li><a href="#">Human Resources</a></li>
+      <li><a href="#">Finance</a></li>
+      <li><a href="#">Marketing</a></li>
+      <li><a href="#">Product Development</a></li>
+      <li><a href="#">Customer Support</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>CPC WEBSITE</h1>
+      <p>Best place to make your important deals!</p>
+    </header>
+
+    <section>
+      <div class="expandable">
+        <h2>About Us</h2>
+        <button onclick="toggleContent('about')">Read More</button>
+        <div id="about" class="content">
+          <p>Acme Corporation has been delivering high-quality services to clients worldwide since 2022. We are committed to professionalism, innovation, and excellence in every project we undertake.</p>
+        </div>
+      </div>
+
+      <div class="expandable">
+        <h2>Services</h2>
+        <button onclick="toggleContent('services')">Read More</button>
+        <div id="services" class="content">
+          <ul>
+            <li>Consulting and Strategy</li>
+            <li>Software Development</li>
+            <li>IT Infrastructure Management</li>
+            <li>Cybersecurity Solutions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="expandable">
+        <h2>Contact</h2>
+        <button onclick="toggleContent('contact')">Read More</button>
+        <div id="contact" class="content">
+          <p>Email: George.rusiecki@btinternet.com<br />Phone: (123) 456-7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function toggleContent(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
