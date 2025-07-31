@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Acme Corporation CPC Solutions</title>
+  <title>CPC Website</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,14 +12,15 @@
       background-color: #f9f9f9;
       color: #333;
       display: flex;
-      flex-direction: row;
     }
+
     header {
       background-color: #2c3e50;
       color: white;
       padding: 20px;
       text-align: center;
     }
+
     .sidebar {
       width: 250px;
       background-color: #34495e;
@@ -30,35 +30,44 @@
       box-sizing: border-box;
       position: fixed;
     }
+
     .sidebar h3 {
       margin-top: 0;
     }
+
     .sidebar ul {
       list-style: none;
       padding: 0;
     }
+
     .sidebar ul li {
       margin: 15px 0;
     }
+
     .sidebar ul li a {
       color: white;
       text-decoration: none;
     }
+
     .sidebar ul li a:hover {
       text-decoration: underline;
     }
+
     .main-content {
+      flex: 1;
       margin-left: 250px;
       padding: 20px;
-      width: calc(100% - 250px);
     }
+
     h2 {
       border-bottom: 2px solid #ccc;
       padding-bottom: 10px;
     }
+
     .expandable {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
+
     .content {
       display: none;
       margin-top: 10px;
@@ -67,6 +76,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
     button {
       background-color: #2c3e50;
       color: white;
@@ -74,17 +84,31 @@
       padding: 10px 15px;
       cursor: pointer;
       border-radius: 5px;
+      margin-top: 10px;
     }
+
     button:hover {
       background-color: #34495e;
     }
-    .domain-link {
-      margin-top: 10px;
-      font-size: 0.9em;
+
+    .visible-paragraph {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
     }
-    .domain-link a {
-      color: #ecf0f1;
-      text-decoration: underline;
+
+    .visible-paragraph img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .visible-paragraph p {
+      margin: 0;
+      max-width: 600px;
     }
   </style>
 </head>
@@ -102,24 +126,31 @@
 
   <div class="main-content">
     <header>
-      <h1>CPC Best Company to Make Deals with!</h1>
-      <p>Professional Solutions for Modern Business</p>
-      <div class="domain-link">
-        Visit us at: <a href="https://itzscarr.github.io/CPC-website-test/" target="_blank" rel="noopener">acmecorp‑cpc.com</a>
-      </div>
+      <h1>CPC WEBSITE</h1>
+      <p>Best place to make your important deals!</p>
     </header>
 
     <section>
+      <!-- ABOUT US -->
       <div class="expandable">
         <h2>About Us</h2>
+        <div class="visible-paragraph">
+          <img src="https://via.placeholder.com/150x100?text=Team" alt="Our Team">
+          <p>CPC has been a leader in professional solutions since 2022. Our team works hard to deliver excellence in every service we provide.</p>
+        </div>
         <button onclick="toggleContent('about')">Read More</button>
         <div id="about" class="content">
-          <p>Acme Corporation has been delivering high-quality services to clients worldwide since 2005. We are committed to professionalism, innovation, and excellence in every project we undertake.</p>
+          <p>We believe in innovation and integrity. Our mission is to empower businesses through efficient and ethical service delivery across industries.</p>
         </div>
       </div>
 
+      <!-- SERVICES -->
       <div class="expandable">
         <h2>Services</h2>
+        <div class="visible-paragraph">
+          <img src="https://via.placeholder.com/150x100?text=Services" alt="Our Services">
+          <p>We offer strategic consulting, software development, infrastructure management, and security services tailored to your goals.</p>
+        </div>
         <button onclick="toggleContent('services')">Read More</button>
         <div id="services" class="content">
           <ul>
@@ -128,14 +159,23 @@
             <li>IT Infrastructure Management</li>
             <li>Cybersecurity Solutions</li>
           </ul>
+          <p>Our team works closely with clients to ensure solutions are scalable, cost-effective, and future-ready.</p>
         </div>
       </div>
 
+      <!-- CONTACT -->
       <div class="expandable">
         <h2>Contact</h2>
+        <div class="visible-paragraph">
+          <img src="https://via.placeholder.com/150x100?text=Contact" alt="Contact Us">
+          <p>Reach out to CPC for inquiries, consultations, or support. We’re available via phone, email, or office visits.</p>
+        </div>
         <button onclick="toggleContent('contact')">Read More</button>
         <div id="contact" class="content">
-          <p>Email: info@acmecorp.com<br />Phone: (123) 456‑7890<br />Address: 123 Business Rd, Corporate City, CO 80000</p>
+          <p>Email: George.rusiecki@btinternet.com<br />
+             Phone: (123) 456-7890<br />
+             Address: 123 Business Rd, Corporate City, CO 80000</p>
+          <p>We aim to respond to all inquiries within 1 business day. Let’s build something great together!</p>
         </div>
       </div>
     </section>
@@ -144,7 +184,7 @@
   <script>
     function toggleContent(id) {
       const content = document.getElementById(id);
-      content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 </body>
