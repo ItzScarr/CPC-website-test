@@ -140,6 +140,33 @@
       margin: 0;
       max-width: 600px;
     }
+      /* Image Scrolling Banner */
+    .image-carousel {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: calc(300px * 6);
+      animation: scrollImages 18s linear infinite;
+    }
+
+    .carousel-track img {
+      width: 300px;
+      height: 180px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    @keyframes scrollImages {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body>
@@ -164,6 +191,15 @@
       <h1>CPC WEBSITE</h1>
       <p>Best place to make your important deals!</p>
     </header>
+
+    <!-- Image Scrolling Banner -->
+    <div class="image-carousel">
+      <div class="carousel-track">
+        <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Slide 1">
+        <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Slide 2">
+        <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Slide 3">
+      </div>
+    </div>
 
     <section>
       <!-- ABOUT US -->
@@ -224,3 +260,5 @@
   </script>
 </body>
 </html>
+
+
