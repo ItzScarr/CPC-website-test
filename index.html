@@ -144,7 +144,8 @@
     /* Hero Sliding Banner (Keeltoys‑style) */
     .hero-slider {
       width: 100%;
-      width: 100%; height: auto; object-fit: cover;: 20px;
+      overflow: hidden;
+      margin-top: 20px;
       position: relative;
     }
 
@@ -158,7 +159,8 @@
     .slider-track img {
       width: 100%;
       height: auto;
-      object-fit: cover;fit: cover;
+      object-fit: cover;
+      object-fit: cover;
     }
 
     
@@ -203,6 +205,61 @@
     .slider-dots .dot.active {
       background-color: #2c3e50;
     }
+  
+    /* RESPONSIVE DESIGN */
+
+    /* Desktop adjustments */
+    @media (min-width: 1024px) {
+      .hero-slider img {
+        max-height: 500px;
+      }
+      .main-content {
+        margin-left: 250px;
+      }
+    }
+
+    /* Tablet layout */
+    @media (max-width: 1023px) and (min-width: 601px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+      }
+      .main-content {
+        margin-left: 0;
+        margin-top: 120px;
+      }
+      .hero-slider img {
+        max-height: 420px;
+      }
+    }
+
+    /* Mobile layout */
+    @media (max-width: 600px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 10px;
+        margin-top: 120px;
+      }
+      header h1 { font-size: 22px; }
+      header p { font-size: 14px; }
+      .hero-slider img {
+        max-height: 300px;
+      }
+      .visible-paragraph {
+        flex-direction: column;
+        text-align: center;
+      }
+      .visible-paragraph img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -231,8 +288,8 @@
     <!-- Hero Image Slider Banner -->
     <div class="hero-slider">
       <div class="slider-track" id="sliderTrack">
-        <div class="slide"><img src="images/bad.jpg" alt="Banner 1"></div>
-        <div class="slide"><img src="images/worse.jpg" alt="Banner 2"></div>
+        <div class="slide"><img src="images/banner1.jpg" alt="Banner 1"></div>
+        <div class="slide"><img src="images/banner2.jpg" alt="Banner 2"></div>
       </div>
     </div>
     </div>
