@@ -260,7 +260,24 @@
       }
     }
 
-  </style>
+      .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      font-size: 30px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 10;
+    }
+    .left-arrow { left: 10px; }
+    .right-arrow { right: 10px; }
+    .arrow:hover { background-color: rgba(0, 0, 0, 0.6); }
+
+</style>
 </head>
 <body>
 
@@ -288,9 +305,13 @@
     <!-- Hero Image Slider Banner -->
     <div class="hero-slider">
       <div class="slider-track" id="sliderTrack">
-        <div class="slide"><img src="images/bad.jpg" alt="Banner 1"></div>
-        <div class="slide"><img src="images/worse.jpg" alt="Banner 2"></div>
+        <div class="slide"><img src="/bad.jpg"></div>
+        <div class="slide"><img src="/worse.jpg"></div>
       </div>
+
+      <!-- Arrow Buttons -->
+      <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
+      <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
     </div>
     </div>
 
@@ -309,7 +330,7 @@
       <div class="expandable">
         <h2>About Us</h2>
         <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Our Team">
+          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
           <p>CPC has been a leader in professional solutions since 2022. Our team works hard to deliver excellence in every service we provide.</p>
         </div>
         <button onclick="toggleContent('about')">Read More</button>
@@ -322,7 +343,7 @@
       <div class="expandable">
         <h2>Services</h2>
         <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Our Services">
+          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
           <p>We offer strategic consulting, software development, infrastructure management, and security services tailored to your goals.</p>
         </div>
         <button onclick="toggleContent('services')">Read More</button>
@@ -341,7 +362,7 @@
       <div class="expandable">
         <h2>Contact</h2>
         <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Contact Us">
+          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
           <p>Reach out to CPC for inquiries, consultations, or support. We’re available via phone, email, or office visits.</p>
         </div>
         <button onclick="toggleContent('contact')">Read More</button>
@@ -369,11 +390,20 @@
     dots.forEach(d => d.classList.remove('active'));
     dots[slide].classList.add('active');
   }
-  setInterval(() => {
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % 2;
+    goToSlide(currentSlide);
+}
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + 2) % 2;
+    goToSlide(currentSlide);
+}
+
+setInterval(() => {
+    nextSlide();(() => {
     currentSlide = (currentSlide + 1) % 2;
     goToSlide(currentSlide);
   }, 5000);
 </script>
 </body>
 </html>
-
