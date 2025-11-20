@@ -1,406 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPC Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      display: flex; transition: transform 0.8s ease-in-out;
-      flex-direction: column;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPC Website</title>
+<style>
+/* Reset & body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
 
-    /* Scrolling Banner */
-    .banner {
-      width: 100%;
-      background-color: #1a252f;
-      color: white;
-      padding: 10px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-    }
+/* Scrolling banner */
+.banner {
+    width: 100%;
+    background-color: #1a252f;
+    color: white;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+.banner p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 15s linear infinite;
+    font-size: 18px;
+}
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
 
-    .banner p {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll 15s linear infinite;
-      font-size: 18px;
-    }
+/* Header */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px; /* offset for banner */
+}
 
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 50px; /* below banner */
+    bottom: 0;
+    overflow-y: auto;
+}
+.sidebar h3 { margin-top: 0; }
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar ul li { margin: 15px 0; }
+.sidebar ul li a { color: white; text-decoration: none; }
+.sidebar ul li a:hover { text-decoration: underline; }
 
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      margin-top: 50px; /* Offset for banner */
-    }
+/* Main content */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 50px; /* offset for banner */
+}
 
-    .sidebar {
-      width: 250px;
-      background-color: #34495e;
-      color: white;
-      padding: 20px;
-      height: 100vh;
-      box-sizing: border-box;
-      position: fixed;
-      top: 50px; /* Push below banner */
-    }
+/* Expandable sections */
+.expandable { margin-bottom: 40px; }
+.content { display: none; margin-top: 10px; padding: 10px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px; }
+button {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+button:hover { background-color: #34495e; }
 
-    .sidebar h3 {
-      margin-top: 0;
-    }
+/* Visible paragraph with image */
+.visible-paragraph {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+.visible-paragraph img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.visible-paragraph p { margin: 0; max-width: 600px; }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
+/* Hero Slider */
+.hero-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slider-track img {
+    width: 100%;
+    object-fit: cover;
+}
 
-    .sidebar ul li {
-      margin: 15px 0;
-    }
+/* Slider arrows */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.slider-arrow.left { left: 10px; }
+.slider-arrow.right { right: 10px; }
 
-    .sidebar ul li a {
-      color: white;
-      text-decoration: none;
-    }
+/* Slider dots */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+.slider-dots .dot {
+    width: 14px;
+    height: 14px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.slider-dots .dot.active { background-color: #2c3e50; }
 
-    .sidebar ul li a:hover {
-      text-decoration: underline;
-    }
-
-    .main-content {
-      flex: 1;
-      margin-left: 250px;
-      padding: 20px;
-      margin-top: 50px; /* Offset for banner */
-    }
-
-    h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
-    }
-
-    .expandable {
-      margin-bottom: 40px;
-    }
-
-    .content {
-      display: none;
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #2c3e50;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #34495e;
-    }
-
-    .visible-paragraph {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .visible-paragraph img {
-      width: 150px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    .visible-paragraph p {
-      margin: 0;
-      max-width: 600px;
-    }
-      /* Image Scrolling Banner */
-    /* Hero Sliding Banner (Keeltoys‑style) */
-    .hero-slider {
-      width: 100%;
-      overflow: hidden;
-      margin-top: 20px;
-      position: relative;
-    }
-
-    .slider-track {
-      display: flex;
-      width: 100%;
-      animation: slideHero 12s infinite ease-in-out;
-    }
-
-    .slide { min-width: 100%; }
-    .slider-track img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      object-fit: cover;
-    }
-
-    
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
-      100% { transform: translateX(-50%); }
-    }
-      /* Hero Slider */
-    .hero-slider {
-      width: 100%;
-      width: 100%; height: auto; object-fit: cover;
-      overflow: hidden;
-      margin-top: 20px;
-      position: relative;
-    }
-    .slider-track {
-      display: flex;
-      width: 200%;
-      transition: transform 0.8s ease-in-out;
-    }
-    .slider-track img {
-      width: 100%;
-      width: 100%; height: auto; object-fit: cover;
-      object-fit: cover;
-    }
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-      gap: 10px;
-    }
-    .slider-dots .dot {
-      width: 14px;
-      height: 14px;
-      background-color: #bbb;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .slider-dots .dot.active {
-      background-color: #2c3e50;
-    }
-  
-    /* RESPONSIVE DESIGN */
-
-    /* Desktop adjustments */
-    @media (min-width: 1024px) {
-      .hero-slider img {
-        max-height: 500px;
-      }
-      .main-content {
-        margin-left: 250px;
-      }
-    }
-
-    /* Tablet layout */
-    @media (max-width: 1023px) and (min-width: 601px) {
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        top: 0;
-      }
-      .main-content {
-        margin-left: 0;
-        margin-top: 120px;
-      }
-      .hero-slider img {
-        max-height: 420px;
-      }
-    }
-
-    /* Mobile layout */
-    @media (max-width: 600px) {
-      .sidebar {
-        display: none;
-      }
-      .main-content {
-        margin-left: 0;
-        padding: 10px;
-        margin-top: 120px;
-      }
-      header h1 { font-size: 22px; }
-      header p { font-size: 14px; }
-      .hero-slider img {
-        max-height: 300px;
-      }
-      .visible-paragraph {
-        flex-direction: column;
-        text-align: center;
-      }
-      .visible-paragraph img {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-      .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.4);
-      color: white;
-      border: none;
-      font-size: 30px;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 10;
-    }
-    .left-arrow { left: 10px; }
-    .right-arrow { right: 10px; }
-    .arrow:hover { background-color: rgba(0, 0, 0, 0.6); }
-
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+    .main-content { margin-left: 0; }
+    .visible-paragraph { flex-direction: column; }
+    .visible-paragraph img { width: 100%; height: auto; }
+}
 </style>
 </head>
 <body>
 
-  <div class="sidebar">
+<!-- Banner -->
+<div class="banner">
+    <p>Welcome to CPC — Best place to make your important deals! | Providing professional solutions since 2022 | Contact us for consultations and support!</p>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
     <h3>Company Divisions</h3>
     <ul>
-      <li><a href="#">Human Resources</a></li>
-      <li><a href="#">Finance</a></li>
-      <li><a href="#">Marketing</a></li>
-      <li><a href="#">Product Development</a></li>
-      <li><a href="#">Customer Support</a></li>
+        <li><a href="#">Human Resources</a></li>
+        <li><a href="#">Finance</a></li>
+        <li><a href="#">Marketing</a></li>
+        <li><a href="#">Product Development</a></li>
+        <li><a href="#">Customer Support</a></li>
     </ul>
-  </div>
+</div>
 
-  <div class="main-content">
+<!-- Main content -->
+<div class="main-content">
     <header>
-      <h1>CPC WEBSITE</h1>
-      <p>Best place to make your important deals!</p>
+        <h1>CPC WEBSITE</h1>
+        <p>Best place to make your important deals!</p>
     </header>
 
-    <!-- Hero Image Slider Banner -->
+    <!-- Hero Slider -->
     <div class="hero-slider">
-      <div class="slider-track" id="sliderTrack">
-        <div class="slide"><img src="images/bad.jpg"></div>
-        <div class="slide"><img src="images/worse.jpg"></div>
-      </div>
-
-      <!-- Arrow Buttons -->
-      <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
-      <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
+        <div class="slider-track" id="sliderTrack">
+            <div class="slide"><img src="images/bad.jpg"></div>
+            <div class="slide"><img src="images/worse.jpg"></div>
+        </div>
+        <button class="slider-arrow left" onclick="prevSlide()">&#10094;</button>
+        <button class="slider-arrow right" onclick="nextSlide()">&#10095;</button>
     </div>
-    </div>
+    <div class="slider-dots" id="sliderDots"></div>
 
-    <div class="slider-dots" id="sliderDots">
-      <span class="dot active" onclick="goToSlide(0)"></span>
-      <span class="dot" onclick="goToSlide(1)"></span>
-    </div>
-
-
-
-    
-    </div>
-
+    <!-- Expandable Sections -->
     <section>
-      <!-- ABOUT US -->
-      <div class="expandable">
-        <h2>About Us</h2>
-        <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
-          <p>CPC has been a leader in professional solutions since 2022. Our team works hard to deliver excellence in every service we provide.</p>
+        <!-- About Us -->
+        <div class="expandable">
+            <h2>About Us</h2>
+            <div class="visible-paragraph">
+                <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Our Team">
+                <p>CPC has been a leader in professional solutions since 2022. Our team works hard to deliver excellence in every service we provide.</p>
+            </div>
+            <button onclick="toggleContent('about')">Read More</button>
+            <div id="about" class="content">
+                <p>We believe in innovation and integrity. Our mission is to empower businesses through efficient and ethical service delivery across industries.</p>
+            </div>
         </div>
-        <button onclick="toggleContent('about')">Read More</button>
-        <div id="about" class="content">
-          <p>We believe in innovation and integrity. Our mission is to empower businesses through efficient and ethical service delivery across industries.</p>
-        </div>
-      </div>
 
-      <!-- SERVICES -->
-      <div class="expandable">
-        <h2>Services</h2>
-        <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
-          <p>We offer strategic consulting, software development, infrastructure management, and security services tailored to your goals.</p>
+        <!-- Services -->
+        <div class="expandable">
+            <h2>Services</h2>
+            <div class="visible-paragraph">
+                <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Our Services">
+                <p>We offer strategic consulting, software development, infrastructure management, and security services tailored to your goals.</p>
+            </div>
+            <button onclick="toggleContent('services')">Read More</button>
+            <div id="services" class="content">
+                <ul>
+                    <li>Consulting and Strategy</li>
+                    <li>Software Development</li>
+                    <li>IT Infrastructure Management</li>
+                    <li>Cybersecurity Solutions</li>
+                </ul>
+                <p>Our team works closely with clients to ensure solutions are scalable, cost-effective, and future-ready.</p>
+            </div>
         </div>
-        <button onclick="toggleContent('services')">Read More</button>
-        <div id="services" class="content">
-          <ul>
-            <li>Consulting and Strategy</li>
-            <li>Software Development</li>
-            <li>IT Infrastructure Management</li>
-            <li>Cybersecurity Solutions</li>
-          </ul>
-          <p>Our team works closely with clients to ensure solutions are scalable, cost-effective, and future-ready.</p>
-        </div>
-      </div>
 
-      <!-- CONTACT -->
-      <div class="expandable">
-        <h2>Contact</h2>
-        <div class="visible-paragraph">
-          <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" >
-          <p>Reach out to CPC for inquiries, consultations, or support. We’re available via phone, email, or office visits.</p>
+        <!-- Contact -->
+        <div class="expandable">
+            <h2>Contact</h2>
+            <div class="visible-paragraph">
+                <img src="images/DADS WEBSITE CONTRACT DEALS.jpeg" alt="Contact Us">
+                <p>Reach out to CPC for inquiries, consultations, or support. We’re available via phone, email, or office visits.</p>
+            </div>
+            <button onclick="toggleContent('contact')">Read More</button>
+            <div id="contact" class="content">
+                <p>Email: George.rusiecki@btinternet.com<br>Phone: (123) 456-7890<br>Address: 123 Business Rd, Corporate City, CO 80000</p>
+                <p>We aim to respond to all inquiries within 1 business day. Let’s build something great together!</p>
+            </div>
         </div>
-        <button onclick="toggleContent('contact')">Read More</button>
-        <div id="contact" class="content">
-          <p>Email: George.rusiecki@btinternet.com<br />
-             Phone: (123) 456-7890<br />
-             Address: 123 Business Rd, Corporate City, CO 80000</p>
-          <p>We aim to respond to all inquiries within 1 business day. Let’s build something great together!</p>
-        </div>
-      </div>
     </section>
-  </div>
+</div>
 
-  <script>
-    function toggleContent(id) {
-      const content = document.getElementById(id);
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    }
-    let currentSlide = 0;
-  function goToSlide(slide) {
-    const track = document.getElementById('sliderTrack');
+<script>
+/* Toggle expandable sections */
+function toggleContent(id) {
+    const content = document.getElementById(id);
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+}
+
+/* Hero slider */
+const sliderTrack = document.getElementById('sliderTrack');
+const slides = sliderTrack.children;
+let currentSlide = 0;
+
+/* Create dots dynamically */
+const sliderDotsContainer = document.getElementById('sliderDots');
+for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if(i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    sliderDotsContainer.appendChild(dot);
+}
+
+function updateSlider() {
+    sliderTrack.style.transform = `translateX(${-currentSlide * 100}%)`;
     const dots = document.querySelectorAll('.dot');
-    currentSlide = slide;
-    track.style.transform = `translateX(${-slide * 100}%)`;
     dots.forEach(d => d.classList.remove('active'));
-    dots[slide].classList.add('active');
-  }
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % 2;
-    goToSlide(currentSlide);
-}
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + 2) % 2;
-    goToSlide(currentSlide);
+    dots[currentSlide].classList.add('active');
 }
 
-setInterval(() => {
-    nextSlide();(() => {
-    currentSlide = (currentSlide + 1) % 2;
-    goToSlide(currentSlide);
-  }, 5000);
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlider();
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlider();
+}
+
+function goToSlide(slide) {
+    currentSlide = slide;
+    updateSlider();
+}
+
+/* Auto-slide every 5 seconds */
+setInterval(nextSlide, 5000);
 </script>
+
 </body>
 </html>
-
