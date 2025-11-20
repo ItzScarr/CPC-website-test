@@ -144,7 +144,7 @@
     /* Hero Sliding Banner (Keeltoys‑style) */
     .hero-slider {
       width: 100%;
-      height: 320px;
+      aspect-ratio: 3 / 4; height: auto;
       overflow: hidden;
       border-radius: 0;
       margin-top: 20px;
@@ -160,12 +160,11 @@
     .slide { min-width: 100%; }
     .slider-track img {
       width: 100%;
-      height: 320px;
+      aspect-ratio: 3 / 4; height: auto;
       object-fit: cover;
     }
 
-    @keyframes slideHero {
-      0% { transform: translateX(0); }
+    
       33% { transform: translateX(-100%); }
       66% { transform: translateX(-200%); }
       100% { transform: translateX(0); }
@@ -175,19 +174,19 @@
       /* Hero Slider */
     .hero-slider {
       width: 100%;
-      height: 320px;
+      aspect-ratio: 3 / 4; height: auto;
       overflow: hidden;
       margin-top: 20px;
       position: relative;
     }
     .slider-track {
       display: flex;
-      width: 300%;
+      width: 200%;
       transition: transform 0.8s ease-in-out;
     }
     .slider-track img {
       width: 100%;
-      height: 320px;
+      aspect-ratio: 3 / 4; height: auto;
       object-fit: cover;
     }
     .slider-dots {
@@ -235,15 +234,15 @@
     <!-- Hero Image Slider Banner -->
     <div class="hero-slider">
       <div class="slider-track" id="sliderTrack">
-        <div class="slide"><img src="images/bad.jpg"></div>
-        <div class="slide"><img src="images/worse.jpg"></div>
+        <div class="slide"><img src="images/bad.jpg" alt="Banner 1"></div>
+        <div class="slide"><img src="images/worse.jpg" alt="Banner 2"></div>
       </div>
+    </div>
     </div>
 
     <div class="slider-dots" id="sliderDots">
       <span class="dot active" onclick="goToSlide(0)"></span>
       <span class="dot" onclick="goToSlide(1)"></span>
-      <span class="dot" onclick="goToSlide(2)"></span>
     </div>
 
 
@@ -317,7 +316,7 @@
     dots[slide].classList.add('active');
   }
   setInterval(() => {
-    currentSlide = (currentSlide + 1) % 3;
+    currentSlide = (currentSlide + 1) % 2;
     goToSlide(currentSlide);
   }, 5000);
 </script>
